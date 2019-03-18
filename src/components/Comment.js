@@ -36,7 +36,14 @@ class Comment extends React.Component {
                   >
                     🗑️
                   </a>
-                  <span className="comment-edit">🖊️</span>
+                  <a
+                    onClick={() => {
+                      this.editHandler();
+                    }}
+                    className="comment-edit"
+                  >
+                    🖊️
+                  </a>
                 </span>
               ) : (
                 <span />
@@ -48,7 +55,12 @@ class Comment extends React.Component {
         </div>
         <p className="comment-time">{this.props.comment.time}</p>
         {this.state.editAccess ? (
-          <EditComment comment={this.props.comment} id={this.props.id} />
+          <EditComment
+            comment={this.props.comment}
+            editComment={this.props.editComment}
+            id={this.props.id}
+            user={this.props.user}
+          />
         ) : (
           <div />
         )}

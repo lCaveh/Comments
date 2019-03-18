@@ -20,14 +20,9 @@ class CreateComment extends React.Component {
           <form onSubmit={this.handleFormSubmit}>
             <label>Content:</label>
             <textarea className="uk-textarea" required />
-            <br />
-            <br />
             <button className="uk-button uk-button-default" type="submit">
               Send
             </button>
-            <br />
-            <br />
-            <br />
           </form>
         ) : (
           <p>Please login to be able write a comment</p>

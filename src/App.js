@@ -57,6 +57,9 @@ class App extends React.Component {
   deleteComment(id) {
     commentsRef.child(id).remove();
   }
+  editComment(comment,id) {
+    commentsRef.child(id).update(comment);
+  }
   render() {
     return (
       <div className="uk-container">
@@ -70,6 +73,7 @@ class App extends React.Component {
           comments={this.state.comments}
           createComment={this.createComment}
           deleteComment={this.deleteComment}
+          editComment={this.editComment}
         />
       </div>
     );

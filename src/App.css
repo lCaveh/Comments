@@ -35,3 +35,9 @@ body {
   grid-row-end: 3;
   font-size: 0.7rem;
 }
+.uk-button {
+  margin-bottom: 20px;
+}
+.uk-textarea {
+  margin-bottom: 20px;
+}

@@ -20,6 +20,7 @@ class AllComments extends React.Component {
                      user={this.props.user}
                      comment={this.props.comments[key]} 
                      deleteComment={this.props.deleteComment}
+                     editComment={this.props.editComment}
                      />
                   </div>
                 </div>
