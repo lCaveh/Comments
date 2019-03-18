@@ -1,10 +1,9 @@
 import React from "react";
 import { commentsRef, authRef, provider } from "./firebase";
 import "../node_modules/uikit/dist/css/uikit.css";
+import "./App.css"
 import Navigation from "./components/Navigation";
 import AllComments from "./components/AllComments";
-import CreateComment from "./components/CreateComment";
-import EditComment from "./components/EditComment";
 
 class App extends React.Component {
   constructor(props) {
@@ -38,7 +37,6 @@ class App extends React.Component {
 
   fetchUser() {
     authRef.onAuthStateChanged(user => {
-      console.log(user);
       this.setState({
         user
       });
@@ -47,11 +45,7 @@ class App extends React.Component {
 
   fetchComments() {
     commentsRef.on("value", snapshot => {
-      const items = snapshot.val();
-      const comments = [];
-      for (let key in items) {
-        comments.push(items[key]);
-      }
+      const comments = snapshot.val();
       this.setState({
         comments
       });
@@ -59,11 +53,6 @@ class App extends React.Component {
   }
   createComment(comment) {
     commentsRef.push(comment);
-    // const comments=this.state.comments;
-    // comments.push(comment)
-    // this.setState({
-    //   comments
-    // })
   }
   render() {
     return (
@@ -78,7 +67,6 @@ class App extends React.Component {
           comments={this.state.comments}
           createComment={this.createComment}
         />
-        <EditComment />
       </div>
     );
   }

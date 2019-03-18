@@ -1,33 +1,37 @@
-.App {
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css?family=Sriracha");
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
+body {
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  font-family: 'Sriracha', sans-serif
 
-.App-link {
-  color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.comment-container {
+  display: grid;
+  grid-template-columns: 20px 10px auto 10px 20px 20px;
+  grid-template-rows: 80% 20%;
+}
+.comment-image {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.comment-content {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+.comment-edit {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.comment-delete {
+  grid-column-start: 6;
+  grid-column-end: 7;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.comment-time {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-size: 0.7rem;
 }

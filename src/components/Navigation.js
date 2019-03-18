@@ -2,7 +2,6 @@ import React from "react";
 
 class Navigation extends React.Component {
 render(){
-    console.log(this.props)
     return(
         <div className="header">
         <nav className="uk-navbar uk-navbar-container uk-margin">

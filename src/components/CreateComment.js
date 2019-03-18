@@ -14,7 +14,6 @@ class CreateComment extends React.Component {
     event.target[0].value='';
   }
   render() {
-      console.log(this.props)
     return (
       <div>
         {this.props.user ? (
@@ -31,7 +30,7 @@ class CreateComment extends React.Component {
             <br />
           </form>
         ) : (
-          <p>Please login to be able write a post</p>
+          <p>Please login to be able write a comment</p>
         )}
       </div>
     );
