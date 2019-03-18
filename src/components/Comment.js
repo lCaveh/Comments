@@ -1,6 +1,19 @@
 import React from "react";
+import EditComment from "./EditComment";
 
 class Comment extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editAccess: false
+    };
+    this.editHandler = this.editHandler.bind(this);
+  }
+  editHandler() {
+    this.setState({
+      editAccess: !this.state.editAccess
+    });
+  }
   render() {
     return (
       <div>
@@ -8,8 +21,6 @@ class Comment extends React.Component {
           <img
             className="comment-image"
             src={this.props.comment.userImage}
-            width="20"
-            height="20"
             className="uk-border-circle"
           />
           <span className="comment-content">
@@ -19,7 +30,12 @@ class Comment extends React.Component {
             <span>
               {this.props.user.uid === this.props.comment.userId ? (
                 <span>
-                  <span className="comment-delete">🗑️</span>
+                  <a
+                    onClick={() => this.props.deleteComment(this.props.id)}
+                    className="comment-delete"
+                  >
+                    🗑️
+                  </a>
                   <span className="comment-edit">🖊️</span>
                 </span>
               ) : (
@@ -31,6 +47,11 @@ class Comment extends React.Component {
           )}
         </div>
         <p className="comment-time">{this.props.comment.time}</p>
+        {this.state.editAccess ? (
+          <EditComment comment={this.props.comment} id={this.props.id} />
+        ) : (
+          <div />
+        )}
       </div>
     );
   }

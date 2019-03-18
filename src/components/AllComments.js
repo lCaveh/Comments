@@ -1,6 +1,6 @@
 import React from "react";
 import CreateComment from "./CreateComment";
-import Comments from "./Comment";
+import Comment from "./Comment";
 
 class AllComments extends React.Component {
   render() {
@@ -12,11 +12,15 @@ class AllComments extends React.Component {
         />
         {this.props.comments ? (
           <div>
-            {Object.keys(this.props.comments).map(key => {
+            {Object.keys(this.props.comments).reverse().map(key => {
               return (
                 <div key={key}>
                   <div className="uk-card uk-card-default uk-card-body">
-                    <Comments id={key} user={this.props.user} comment={this.props.comments[key]} />
+                    <Comment id={key}
+                     user={this.props.user}
+                     comment={this.props.comments[key]} 
+                     deleteComment={this.props.deleteComment}
+                     />
                   </div>
                 </div>
               );
