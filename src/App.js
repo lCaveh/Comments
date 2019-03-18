@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { commentsRef, authRef, provider } from "./firebase";
 import "../node_modules/uikit/dist/css/uikit.css";
 import Navigation from "./components/Navigation";
@@ -16,6 +16,10 @@ class App extends React.Component {
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
   }
+  componentWillMount() {
+    this.fetchUser();
+    this.fetchComments();
+  }
   signIn() {
     authRef.signInWithPopup(provider).then(result => {
       const user = result.user;
@@ -32,8 +36,35 @@ class App extends React.Component {
     });
   }
 
+  fetchUser() {
+    authRef.onAuthStateChanged(user => {
+      console.log(user);
+      this.setState({
+        user
+      });
+    });
+  }
 
-
+  fetchComments() {
+    commentsRef.on("value", snapshot => {
+      const items = snapshot.val();
+      const comments = [];
+      for (let key in items) {
+        comments.push(items[key]);
+      }
+      this.setState({
+        comments
+      });
+    });
+  }
+  createComment(comment) {
+    commentsRef.push(comment);
+    // const comments=this.state.comments;
+    // comments.push(comment)
+    // this.setState({
+    //   comments
+    // })
+  }
   render() {
     return (
       <div className="uk-container">
@@ -42,8 +73,11 @@ class App extends React.Component {
           handleLogout={this.signOut}
           user={this.state.user}
         />
-        <AllComments />
-        <CreateComment />
+        <AllComments
+          user={this.state.user}
+          comments={this.state.comments}
+          createComment={this.createComment}
+        />
         <EditComment />
       </div>
     );
